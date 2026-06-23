@@ -7,6 +7,7 @@
     "test": "playwright test",
     "test:brave": "playwright test --project=brave",
     "test:brave:headed": "playwright test --project=brave --headed",
+    "test:brave:demo": "playwright test --project=brave --headed",
     "test:chromium": "playwright test --project=chromium",
     "test:headed": "playwright test --project=chromium --headed",
     "test:ui": "playwright test --ui",
