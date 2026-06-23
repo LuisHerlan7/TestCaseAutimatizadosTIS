@@ -1,13 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { fixturePath, login } from './helpers.js';
 
-test('test', async ({ page }) => {
-  await page.goto('http://kawisoft.tis.cs.umss.edu.bo/');
-  await page.getByRole('banner').getByRole('link', { name: 'Iniciar sesión' }).click();
-  await page.getByRole('textbox', { name: 'Correo institucional' }).click();
-  await page.getByRole('textbox', { name: 'Correo institucional' }).fill('cttandrea34@gmail.com');
-  await page.getByRole('textbox', { name: 'Contraseña' }).click();
-  await page.getByRole('textbox', { name: 'Contraseña' }).fill('andy2000');
-  await page.getByRole('button', { name: 'Iniciar sesión → en Dev' }).click();
+test('TC-06 Publicación de proyecto', async ({ page }) => {
+  await login(page);
   await page.getByRole('button', { name: 'Añadir proyecto' }).click();
   await page.getByRole('textbox', { name: 'ej. Sistema de Panel Nexus' }).click();
   await page.getByRole('textbox', { name: 'ej. Sistema de Panel Nexus' }).press('CapsLock');
@@ -29,7 +24,7 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Un breve resumen de una línea' }).fill('ES un sistema para un consultorio odontologico');
   await page.getByRole('button').first().click();
   await page.getByRole('button', { name: 'Cargar desde .txt' }).click();
-  await page.getByRole('button', { name: 'Cargar desde .txt' }).setInputFiles('env.txt');
+  await page.locator('input[type="file"]').first().setInputFiles(fixturePath('project-description.txt'));
   await page.getByRole('button', { name: '+ Añadir Tech' }).click();
   await page.getByRole('textbox', { name: 'Escribe una tecnología y' }).fill('java');
   await page.getByRole('textbox').nth(5).fill('2026-01-06');
@@ -38,3 +33,4 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'https://github.com/' }).fill('https://github.com/4ndrea5');
   await page.getByRole('button', { name: 'Publicar Proyecto' }).click();
 });
+
