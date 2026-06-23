@@ -1,14 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { login, setFirstFileInput } from './helpers.js';
 
-test('test', async ({ page }) => {
-  await page.goto('http://kawisoft.tis.cs.umss.edu.bo/');
-  await page.getByRole('banner').getByRole('link', { name: 'Iniciar sesión' }).click();
-  await page.getByRole('textbox', { name: 'Correo institucional' }).click();
-  await page.getByRole('textbox', { name: 'Correo institucional' }).fill('cttandrea34@gmail.com');
-  await page.getByRole('textbox', { name: 'Contraseña' }).click();
-  await page.getByRole('textbox', { name: 'Contraseña' }).fill('andy2000');
-  await page.getByRole('textbox', { name: 'Contraseña' }).press('Enter');
-  await page.getByRole('button', { name: 'Iniciar sesión → en Dev' }).click();
+test('TC-11 Registrar experiencia laboral', async ({ page }) => {
+  await login(page);
   await page.getByRole('button', { name: 'Experiencia' }).click();
   await page.getByRole('button', { name: 'Subir Nuevo PDF, PNG, JPG o' }).click();
   await page.getByRole('textbox', { name: 'Ej: SYSTEM ARCHITECTURE, QA' }).click();
@@ -51,6 +45,7 @@ test('test', async ({ page }) => {
   await page.getByRole('textbox', { name: 'Resume tus responsabilidades' }).press('CapsLock');
   await page.getByRole('textbox', { name: 'Resume tus responsabilidades' }).fill('Fui QAtester de la empresa de google');
   await page.getByText('Haz clic o arrastra el archivo aquíFormato PDF, PNG o JPG (Máx. 5MB)').click();
-  await page.locator('body').setInputFiles('certificate-program.png');
+  await setFirstFileInput(page, 'sample.png');
   await page.getByRole('button', { name: 'Guardar Experiencia' }).click();
 });
+
