@@ -5,8 +5,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export const testUser = {
   name: process.env.E2E_USER_NAME || 'Andrea Torrico',
-  email: process.env.E2E_USER_EMAIL || 'cttandrea34@gmail.com',
-  password: process.env.E2E_USER_PASSWORD || 'andy2000'
+  email: process.env.E2E_USER_EMAIL || '696969696@est.ums.edu',
+  password: process.env.E2E_USER_PASSWORD || 'holaHerlan'
 };
 
 export async function login(page) {

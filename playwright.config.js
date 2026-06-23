@@ -2,6 +2,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 const baseURL = process.env.E2E_BASE_URL || 'http://127.0.0.1:4200';
+const bravePath = process.env.BRAVE_PATH || 'C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe';
 
 export default defineConfig({
   testDir: './tests',
@@ -18,12 +19,32 @@ export default defineConfig({
     navigationTimeout: 30_000,
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure'
+    video: 'retain-on-failure',
+    locale: 'es-ES',
+    timezoneId: 'America/La_Paz',
+    extraHTTPHeaders: {
+      'Accept-Language': 'es-ES'
+    }
   },
   projects: [
     {
+      name: 'brave',
+      use: {
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+          executablePath: bravePath,
+          args: ['--lang=es-ES']
+        }
+      }
+    },
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
+      use: {
+        ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ['--lang=es-ES']
+        }
+      }
     }
   ]
 });
