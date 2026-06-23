@@ -24,6 +24,9 @@ export default defineConfig({
     timezoneId: 'America/La_Paz',
     extraHTTPHeaders: {
       'Accept-Language': 'es-ES'
+    },
+    launchOptions: {
+      slowMo: 1000
     }
   },
   projects: [
@@ -33,7 +36,8 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         launchOptions: {
           executablePath: bravePath,
-          args: ['--lang=es-ES']
+          args: ['--lang=es-ES'],
+          slowMo: 1500
         }
       }
     },
@@ -42,7 +46,8 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
         launchOptions: {
-          args: ['--lang=es-ES']
+          args: ['--lang=es-ES'],
+          slowMo: 1500
         }
       }
     }
