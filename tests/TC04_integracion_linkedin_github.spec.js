@@ -1,21 +1,8 @@
 import { test, expect } from '@playwright/test';
+import { login } from './helpers.js';
 
 test('TC-04 Integración con perfiles externos (LinkedIn/GitHub)', async ({ page }) => {
-  // Iniciar sesión
-  await page.goto('http://kawisoft.tis.cs.umss.edu.bo/');
-
-  await page.getByRole('banner')
-    .getByRole('link', { name: 'Iniciar sesión' })
-    .click();
-
-  await page.getByRole('textbox', { name: 'Correo institucional' })
-    .fill('cttandrea34@gmail.com');
-
-  await page.getByRole('textbox', { name: 'Contraseña' })
-    .fill('andy2000');
-
-  await page.getByRole('button', { name: 'Iniciar sesión → en Dev' })
-    .click();
+  await login(page);
 
   // Acceder a configuración
   await page.getByRole('button', { name: 'Configuración' })
@@ -46,3 +33,4 @@ test('TC-04 Integración con perfiles externos (LinkedIn/GitHub)', async ({ page
     page.locator('input[type="text"]').nth(5)
   ).toHaveValue('https://www.linkedin.com/in/carolina-torrico-7ba9763b1/');
 });
+
