@@ -3,9 +3,11 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+const runId = process.env.E2E_TEST_RUN_ID || new Date().toISOString().replace(/[^0-9]/g, '').slice(0, 14);
+
 export const testUser = {
-  name: process.env.E2E_USER_NAME || 'Andrea Torrico',
-  email: process.env.E2E_USER_EMAIL || '696969696@est.ums.edu',
+  name: process.env.E2E_USER_NAME || `Usuario Demo ${runId}`,
+  email: process.env.E2E_USER_EMAIL || `demo-${runId}@est.ums.edu`,
   password: process.env.E2E_USER_PASSWORD || 'holaHerlan'
 };
 
